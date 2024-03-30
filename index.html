@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Code from John Wargo-->
+    <script>
+        // does the browser support service workers?
+        if ('serviceWorker' in navigator) {
+            // register the service worker
+            navigator.serviceWorker.register('./sw.js')
+                .then(function (reg) {
+                    console.log(`Service Worker Registration (Scope: ${reg.scope})`);
+                })
+                .catch(function (error) {
+                    // display an error message
+                    console.log(`Service Worker Error (${error})`);
+                });
+        } else {
+            // happens when the app isn't served over a TLS connection (HTTPS)
+            console.warn('Service Worker not available');
+        }
+    </script>
+</head>
+<body>
+<h1>sudoKUH</h1>
+</body>
+</html>
