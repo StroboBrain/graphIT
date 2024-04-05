@@ -49,7 +49,7 @@
     if (urlParams.get('source') === 'pwa') {
         console.log('Launched as PWA');
         // add the PWA moniker to the title
-        let theTitle = document.getElementById('title');        
+        let theTitle = document.getElementById('title');
         theTitle.innerHTML = theTitle.innerHTML + ' (PWA)';
     }
 
@@ -70,7 +70,7 @@
         // don't allow the browser to do its install, we want to do it when the user
         // taps our install button
         event.preventDefault();
-        // stash the event object so we can use it later (when the user taps the 
+        // stash the event object so we can use it later (when the user taps the
         // install button)
         deferredPrompt = event;
         // now unhide the Install button so the user can tap it!
@@ -83,3 +83,4 @@
     });
 
 })();
+
