@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-
+<!-- This page hoste the game part of sudoKUH -->
 <head>
     <meta charset="utf-8">
     <title>play Sudoku</title>
@@ -15,15 +15,77 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
+    <!-- Add Sudoku script -->
+    <script src="js/sudoku.js"></script>
 
+    <style>
+        table {
+            margin: auto;
+            width: 450px;
+            height: 450px;
+        }
+        td {
+            width: 50px;
+            height: 50px;
+            border: 1px solid #000;
+            text-align: center;
+            vertical-align: middle;
+            line-height: 50px;
+            font-size: 20px;
+            cursor: pointer; /* Change the cursor when hovering over a cell */
+        }
+    </style>
 
 </head>
 <body>
-<div id='playButton'>
-    <button id='playButton'>restart</button>
+<div id='replayButtonDiv'>
+    <button id='replayButton' onclick="location.reload();">restart</button>
 </div>
 <h1 id="title">solve the Sudoku</h1>
 
+<table id="sudoku"></table>
+<script src="sudoku.js"></script>
 
+
+<script>
+    var currentPuzzle = sudoku.generate('easy');
+    currentPuzzleSolution = sudoku.solve(currentPuzzle);
+    console.log(currentPuzzle);
+    console.log(currentPuzzleSolution);
+    currentPuzzle = sudoku.board_string_to_grid(currentPuzzle)
+
+    var table = document.getElementById('sudoku');
+    for (var i = 0; i < 9; i++) {
+        var row = document.createElement('tr');
+        for (var j = 0; j < 9; j++) {
+            var name = "SudokuField" + i + j;
+            console.log(name)
+            var button = document.createElement('button');
+            button.id = name;
+            button.textContent = currentPuzzle[i][j] === "." ?  " " : currentPuzzle[i][j];
+            //Only add a button to change, if it was not set at the beginning
+            if (button.textContent===" "){
+                button.onclick = function() {
+                    console.log(this.textContent)
+                    if (this.textContent===" " || this.textContent==="9"){
+                        this.textContent="1";
+                    } else {
+                        this.textContent = parseInt(this.textContent) + 1;
+                    }
+                    let temp1 = this.id[11]
+                    let temp2 = this.id[12]
+                    console.log('row ' + temp1);
+                    console.log('column ' + temp2);
+                    currentPuzzle[temp1][temp2]=this.textContent;
+                    console.log(currentPuzzle);
+                };
+            }
+
+            row.appendChild(button);
+        }
+        table.appendChild(row);
+    }
+</script>
+<button onClick = "alert('checking')"> check solution</button>
 </body>
 </html>

@@ -90,6 +90,21 @@ button#playButton {
   border-radius: 5px;
   display:flex;
 }
+#replayButtonDiv {
+  position: absolute;
+  top: 1vh;
+  right: 2vw;
+}
+
+button#replayButton {
+  background-color: rgb(40, 60, 179);
+  color: white;
+  padding: 1.3vw 1.6vw;
+  font-size: 1.5vw;
+  cursor: pointer;
+  border-radius: 5px;
+  display:flex;
+}
 
 button#installButton {
   background-color: rgb(54, 83, 179);
