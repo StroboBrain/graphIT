@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="css/main.css">
 
   <script>
+    // serviceworker script, should be refactored in a different file in the future.
     // does the browser support service workers?
     if ('serviceWorker' in navigator) {
       // fires when the service worker is ready
@@ -44,11 +45,13 @@
 </head>
 
 <body>
-  <div id='installButtonDiv'>
-    <button id='installButton'>Install</button>
+  <div id='playButton'>
+    <button id='playButton' onclick="location.href='game.html';">Play</button>
   </div>
   <div id='pageLogo'></div>
   <h1 id="title">sudoKUH</h1>
+
+
 
 </body>
 

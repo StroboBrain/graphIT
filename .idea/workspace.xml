@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a25c596d-474d-4692-92c8-b9917bdf146c" name="Changes" comment="fixed webmanifest">
+    <list default="true" id="7154d78f-2c3c-4f05-aded-bc429edd09e9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/game.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.webmanifest" beforeDir="false" afterPath="$PROJECT_DIR$/app.webmanifest" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/normalize.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/normalize.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,7 +23,7 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectId" id="2eg4yQHMcacdkSCNzT6MfzF5ke1" />
+  <component name="ProjectId" id="2f30CYikLCJaF1dOBsxS4LzlyMh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -41,28 +44,16 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="a25c596d-474d-4692-92c8-b9917bdf146c" name="Changes" comment="" />
-      <created>1712313140927</created>
+      <changelist id="7154d78f-2c3c-4f05-aded-bc429edd09e9" name="Changes" comment="" />
+      <created>1713014327590</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1712313140927</updated>
-      <workItem from="1712313144562" duration="704000" />
+      <updated>1713014327590</updated>
+      <workItem from="1713014330632" duration="871000" />
     </task>
-    <task id="LOCAL-00001" summary="fixed webmanifest">
-      <created>1712313175150</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1712313175150</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed webmanifest" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed webmanifest" />
   </component>
 </project>
