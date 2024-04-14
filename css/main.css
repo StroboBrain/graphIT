@@ -116,6 +116,18 @@ button#installButton {
   display:none;
 }
 
+.sudokuButton {
+  background-color: rgb(233, 233, 233);
+  color: black;
+  width: 8vw;
+  height: 8vw;
+  font-size: 6vw;
+  text-align: center;
+  align-items: center;  /* Center vertically */
+  justify-content: center;  /* Center horizontally */
+}
+
+
 button#installButton:hover {
   background-color: #f87a03;
 }
