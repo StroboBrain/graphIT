@@ -16,23 +16,26 @@
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
     <!-- Add Sudoku script -->
+    <table id="sudokuTable"></table>
     <script src="js/sudoku.js"></script>
     <script src="js/runSudoku.js"></script>
+    <script>
+        //starts an initial board
+    createBoard(currentPuzzle,document.getElementById('sudokuTable'));
+    </script>
     
-    <style>
-        table {
-            margin: auto;
-            width: 100%;
-            height: 100%;
-        }
-        
-    </style>
+    
+  
 
 </head>
 <body>
 <div id='replayButtonDiv'>
     <button id='replayButton' onclick="location.reload();">restart</button>
 </div>
+<button id="hardButton" onclick="updateDifficulty('hard')">hard</button>
+<button id="mediumButton" onclick="updateDifficulty('medium')">medium</button>
+<button id="easyButton" onclick="updateDifficulty('easy')">easy</button>
+
 <h1 id="title">Solve the Sudoku by clicking the ?</h1>
 <!-- This textarea displays a feedback message if the check Solution Button is pressed -->
 <textarea id='checkMessage' style="with: 100%; height: 30%; display: none;"
@@ -40,20 +43,11 @@ onClick ="document.getElementById('checkMessage').style.display = 'none';"
 >Winner</textarea>
 
 
-<table id="sudoku"></table>
-
 <script>
-    //generates default Sudoku board
-    var currentPuzzle = sudoku.generate('100');
-    currentPuzzleSolution = sudoku.solve(currentPuzzle);
-    console.log(currentPuzzle);
-    console.log(currentPuzzleSolution);
-    currentPuzzle = sudoku.board_string_to_grid(currentPuzzle);
-    var table = document.getElementById('sudoku');
-    createBoard(table, currentPuzzle);
+    
 </script>
 
 
-<button onClick = "checkSolution(currentPuzzle, currentPuzzle)"> check solution</button>
+<button onClick = "checkSolution(currentPuzzle, currentPuzzleSolution)"> check solution</button>
 </body>
 </html>

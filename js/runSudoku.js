@@ -1,5 +1,38 @@
-function createBoard(table, currentPuzzle){
-    //creates the initial board
+
+var difficulty = "easy";
+var currentPuzzleSolution;
+var currentPuzzle = newPuzzle();
+
+
+//is called when a difficulty button is pressed
+function updateDifficulty(difficultyLevel){
+    difficulty = difficultyLevel;
+    console.log("difficulty set to", difficulty);
+    newPuzzle();
+    createTable();
+    
+}
+
+//generates a new puzzle with the current difficulty
+function newPuzzle(){
+    currentPuzzle = sudoku.generate(difficulty);
+    currentPuzzleSolution = sudoku.solve(currentPuzzle);
+    console.log(currentPuzzle);
+    currentPuzzle = sudoku.board_string_to_grid(currentPuzzle);
+    return currentPuzzle;
+}
+
+//resets the table and loads it with a new Sudoku
+function createTable(){
+    table = document.getElementById('sudokuTable');
+    table.innerHTML = '';
+    createBoard(currentPuzzle,table);
+    
+}
+
+function createBoard(puzzle, table){
+    //filles the table with the right buttons
+   
     for (var i = 0; i < 9; i++) {
         var row = document.createElement('tr');
         for (var j = 0; j < 9; j++) {
@@ -7,7 +40,7 @@ function createBoard(table, currentPuzzle){
             var button = document.createElement('button');
             button.id = name;
             button.className = "sudokuButton";
-            button.textContent = currentPuzzle[i][j] === "." ?  "?" : currentPuzzle[i][j];
+            button.textContent = puzzle[i][j] === "." ?  "?" : puzzle[i][j];
             //Only add a button to change, if it was not set at the beginning
             if (button.textContent==="?"){
                 button.style.background = '#ADD8E6';
@@ -19,9 +52,10 @@ function createBoard(table, currentPuzzle){
         }
         table.appendChild(row);
     }
-
+    
 }
 
+//this function is called when a button is pressed in the sudoku
 function updateSudokuNumber(button){
     //switch case to update the button content on click.
     switch (button.textContent){
@@ -42,6 +76,7 @@ function updateSudokuNumber(button){
 }
 
 
+
 // Function that is run, when the check solution button is pressed.
 function checkSolution(gridToCheck, currentPuzzle){
     let checking = sudoku.board_grid_to_string(gridToCheck);
@@ -54,6 +89,9 @@ function checkSolution(gridToCheck, currentPuzzle){
     }
 
 }
+
+
+
 
 
 
