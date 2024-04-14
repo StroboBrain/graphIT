@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-<!-- This page hoste the game part of sudoKUH -->
+<!-- This page hosts the game part of sudoKUH -->
 <head>
     <meta charset="utf-8">
     <title>play Sudoku</title>
@@ -48,44 +48,68 @@
 
 
 <script>
-    var currentPuzzle = sudoku.generate('easy');
+    //generates the sudoku board and the solution
+    var currentPuzzle = sudoku.generate('100');
     currentPuzzleSolution = sudoku.solve(currentPuzzle);
     console.log(currentPuzzle);
     console.log(currentPuzzleSolution);
     currentPuzzle = sudoku.board_string_to_grid(currentPuzzle)
-
     var table = document.getElementById('sudoku');
     for (var i = 0; i < 9; i++) {
         var row = document.createElement('tr');
         for (var j = 0; j < 9; j++) {
             var name = "SudokuField" + i + j;
-            console.log(name)
             var button = document.createElement('button');
             button.id = name;
             button.textContent = currentPuzzle[i][j] === "." ?  " " : currentPuzzle[i][j];
             //Only add a button to change, if it was not set at the beginning
             if (button.textContent===" "){
+                button.style.background = '#ADD8E6';
                 button.onclick = function() {
-                    console.log(this.textContent)
-                    if (this.textContent===" " || this.textContent==="9"){
-                        this.textContent="1";
-                    } else {
-                        this.textContent = parseInt(this.textContent) + 1;
+                    //switch case to update the button content on click.
+                    switch (this.textContent){
+                        case ' ':
+                            this.textContent="1";
+                            break;
+                        case '9':
+                            this.textContent=" ";
+                            break;
+                        default:
+                            this.textContent= parseInt(this.textContent) + 1;
                     }
                     let temp1 = this.id[11]
                     let temp2 = this.id[12]
-                    console.log('row ' + temp1);
-                    console.log('column ' + temp2);
-                    currentPuzzle[temp1][temp2]=this.textContent;
+                    //update the puzzle to . if the button is " " or the number
+                    currentPuzzle[temp1][temp2]=this.textContent===' '? "." : this.textContent;
                     console.log(currentPuzzle);
                 };
             }
-
             row.appendChild(button);
         }
         table.appendChild(row);
     }
+
 </script>
-<button onClick = "alert('checking')"> check solution</button>
+<!-- This textarea displays a feedback message if the check Solution Button is pressed -->
+<textarea id='checkMessage' style="with: 100%; height: 30%; display: none;"
+onClick ="document.getElementById('checkMessage').style.display = 'none';"
+>Winner</textarea>
+<script>
+    // Script that is run, when the check solution button is pressed.
+    function checkSolution(){
+        let checking = sudoku.board_grid_to_string(currentPuzzle);
+        console.log('checking');
+        document.getElementById('checkMessage').style.display = 'flex';
+        if (checking===currentPuzzleSolution) {
+            document.getElementById('checkMessage').textContent = 'Winner!';
+        } else {
+            document.getElementById('checkMessage').textContent = 'Try harder!';
+        }
+
+    }
+
+</script>
+
+<button onClick = "checkSolution()"> check solution</button>
 </body>
 </html>

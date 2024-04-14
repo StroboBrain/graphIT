@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7154d78f-2c3c-4f05-aded-bc429edd09e9" name="Changes" comment="added basic sudoku">
+    <list default="true" id="7154d78f-2c3c-4f05-aded-bc429edd09e9" name="Changes" comment="deleted not needed code from the original app">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/js/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/js/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game.html" beforeDir="false" afterPath="$PROJECT_DIR$/game.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +51,7 @@
       <option name="presentableId" value="Default" />
       <updated>1713014327590</updated>
       <workItem from="1713014330632" duration="9936000" />
-      <workItem from="1713094192472" duration="72000" />
+      <workItem from="1713094192472" duration="3219000" />
     </task>
     <task id="LOCAL-00001" summary="added game page">
       <created>1713015268125</created>
@@ -73,7 +74,14 @@
       <option name="project" value="LOCAL" />
       <updated>1713024862880</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="deleted not needed code from the original app">
+      <created>1713094293116</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1713094293116</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -94,6 +102,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="added game page" />
     <MESSAGE value="added basic sudoku" />
-    <option name="LAST_COMMIT_MESSAGE" value="added basic sudoku" />
+    <MESSAGE value="deleted not needed code from the original app" />
+    <option name="LAST_COMMIT_MESSAGE" value="deleted not needed code from the original app" />
   </component>
 </project>

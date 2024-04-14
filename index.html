@@ -26,7 +26,6 @@
         // we have an active service worker working for us
         console.log(`Service Worker ready (Scope: ${reg.scope})`);
         // do something interesting, if you want...
-
       });
       // then register our service worker
       navigator.serviceWorker.register('./sw.js')
@@ -49,7 +48,7 @@
   <div id='playButton'>
     <button id='playButton' onclick="location.href='game.html';">Play</button>
   </div>
-  <div id='pageLogo'></div>
+  <div id='pageLogo' onclick="location.href='game.html';"></div>
   <h1 id="title">sudoKUH</h1>
 
 
