@@ -81,11 +81,11 @@ function updateSudokuNumber(button){
 function checkSolution(gridToCheck, currentPuzzle){
     let checking = sudoku.board_grid_to_string(gridToCheck);
     console.log('checking');
-    document.getElementById('checkMessage').style.display = 'flex';
+    document.getElementById('checkFeedBack').style.display = 'flex';
     if (checking===currentPuzzleSolution) {
-        document.getElementById('checkMessage').textContent = 'Winner!';
+        document.getElementById('checkFeedBack').innerHTML = "Winner!";
     } else {
-        document.getElementById('checkMessage').textContent = 'Try harder!';
+        document.getElementById('checkFeedBack').innerHTML = "Try harder!";
     }
 
 }
