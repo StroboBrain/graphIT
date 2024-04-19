@@ -1,7 +1,7 @@
-
-var difficulty = "easy";
-var currentPuzzleSolution;
+var difficulty = "easy"; // Default difficulty
 var currentPuzzle = newPuzzle();
+var currentPuzzleSolution;
+var currentPuzzleSolutionAsGrid = sudoku.board_string_to_grid(currentPuzzleSolution);
 
 
 //is called when a difficulty button is pressed
@@ -10,7 +10,6 @@ function updateDifficulty(difficultyLevel){
     console.log("difficulty set to", difficulty);
     newPuzzle();
     createTable();
-    
 }
 
 //generates a new puzzle with the current difficulty
@@ -69,11 +68,18 @@ function updateSudokuNumber(button){
         default:
             button.textContent= parseInt(button.textContent) + 1;
     }
-    let temp1 = button.id[11]
-    let temp2 = button.id[12]
+    
     //update the puzzle to . if the button is " " or the number
-    currentPuzzle[temp1][temp2]=button.textContent==='?'? "." : button.textContent;
+    currentPuzzle[xCoordinates(button)][yCoordinates(button)]=button.textContent==='?'? "." : button.textContent;
     console.log(currentPuzzle);
+}
+
+
+function xCoordinates (button){
+    return button.id[11];
+}
+function yCoordinates(button){
+    return button.id[12];
 }
 
 
@@ -91,6 +97,24 @@ function checkSolution(gridToCheck, currentPuzzle){
     }
 
 }
+
+// Checks the pressed Buttons and resets them if the are wrong
+
+function checkUserNumbers(){
+    let buttonToCheck = document.getElementsByClassName('sudokuButtonPressable');
+    for(var i = 0; i < buttonToCheck.length; i++){
+        var element = buttonToCheck[i];
+        if (currentPuzzleSolutionAsGrid[xCoordinates(button)][yCoordinates(button)] == button.textContent){
+            button.background = 'green';
+        } else {
+            button.background = 'red';
+        }
+
+        // Do something with element
+    }
+
+
+} 
 
 
 
