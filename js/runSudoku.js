@@ -87,8 +87,8 @@ function yCoordinates(button){
 
 // Function that is run, when the check solution button is pressed.
 function checkSolution(gridToCheck, currentPuzzle){
+    checkUserNumbers();
     let checking = sudoku.board_grid_to_string(gridToCheck);
-    console.log('checking');
     document.getElementById('checkFeedBack').style.display = 'flex';
     if (checking===currentPuzzleSolution) {
         document.getElementById('checkFeedBack').innerHTML = "Winner!";
@@ -102,15 +102,17 @@ function checkSolution(gridToCheck, currentPuzzle){
 
 function checkUserNumbers(){
     let buttonToCheck = document.getElementsByClassName('sudokuButtonPressable');
-    for(var i = 0; i < buttonToCheck.length; i++){
-        var element = buttonToCheck[i];
+    for(let i = 0; i < buttonToCheck.length; i++){
+        let button = buttonToCheck[i];
         if (currentPuzzleSolutionAsGrid[xCoordinates(button)][yCoordinates(button)] == button.textContent){
-            button.background = 'green';
+            button.style.backgroundColor = 'green'; //set the background to green
+            button.onclick = null; // button can't be pressed anymore
         } else {
-            button.background = 'red';
+            if (button.textContent!=='?'){
+                button.style.backgroundColor = 'red'; // red if you made a mistake
+            }
+            
         }
-
-        // Do something with element
     }
 
 
