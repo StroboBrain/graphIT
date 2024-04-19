@@ -27,7 +27,6 @@ function createTable(){
     table = document.getElementById('sudokuTable');
     table.innerHTML = '';
     createBoard(currentPuzzle,table);
-    
 }
 
 function createBoard(puzzle, table){
@@ -39,10 +38,12 @@ function createBoard(puzzle, table){
             var name = "SudokuField" + i + j;
             var button = document.createElement('button');
             button.id = name;
-            button.className = "sudokuButton";
+            button.classList.add("sudokuButton");
+            // sudoku.js libary uses a . for an empty square, replace it with a ?
             button.textContent = puzzle[i][j] === "." ?  "?" : puzzle[i][j];
             //Only add a button to change, if it was not set at the beginning
             if (button.textContent==="?"){
+                button.classList.add("sudokuButtonPressable");
                 button.style.background = '#ADD8E6';
                 button.onclick = function() {
                     updateSudokuNumber(this);
@@ -74,6 +75,7 @@ function updateSudokuNumber(button){
     currentPuzzle[temp1][temp2]=button.textContent==='?'? "." : button.textContent;
     console.log(currentPuzzle);
 }
+
 
 
 
