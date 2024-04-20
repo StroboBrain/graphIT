@@ -1,7 +1,9 @@
+
 var difficulty = "easy"; // Default difficulty
 var currentPuzzle = newPuzzle();
 var currentPuzzleSolution;
 var currentPuzzleSolutionAsGrid = sudoku.board_string_to_grid(currentPuzzleSolution);
+console.assert(currentPuzzleSolution!==null);
 
 
 //is called when a difficulty button is pressed
@@ -9,8 +11,11 @@ function updateDifficulty(difficultyLevel){
     difficulty = difficultyLevel;
     console.log("difficulty set to", difficulty);
     newPuzzle();
-    createTable();
+    createTable(document.getElementById('sudokuTable'));
 }
+
+
+
 
 //generates a new puzzle with the current difficulty
 function newPuzzle(){
@@ -21,9 +26,9 @@ function newPuzzle(){
     return currentPuzzle;
 }
 
+
 //resets the table and loads it with a new Sudoku
-function createTable(){
-    table = document.getElementById('sudokuTable');
+function createTable(table){
     table.innerHTML = '';
     createBoard(currentPuzzle,table);
 }
