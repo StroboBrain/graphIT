@@ -15,7 +15,6 @@
 
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/main.css">
-    <!-- Title in header, because it was an easy fix to put it over the sudoku again -->
     
     <table id="sudokuTable"></table>
     <script src="js/sudoku.js"></script>
@@ -29,24 +28,18 @@
 <body>
 <h1 id="title">Solve the Sudoku by clicking the ?</h1>
 
+<table id="sudokuTable"></table>
 
 <button id='replayButton' onclick="location.reload();">restart</button>
 
-<button id="hardButton" onclick="updateDifficulty('hard')">hard</button>
-<button id="mediumButton" onclick="updateDifficulty('medium')">medium</button>
-<button id="easyButton" onclick="updateDifficulty('easy')">easy</button>
+<button id="hardButton" onclick="sudokuObject.updateDifficulty('hard')">hard</button>
+<button id="mediumButton" onclick="sudokuObject.updateDifficulty('medium')">medium</button>
+<button id="easyButton" onclick="sudokuObject.updateDifficulty('easy')">easy</button>
 
 
 
-<table id="sudokuTable"></table>
-<script>
-    let tempTable = document.getElementById("sudokuTable");
-    let temp = sudokuObject.getSudokuTable();
-    console.log(temp);
-    tempTable.parentNode.replaceChild(temp,tempTable);
 
-    console.log(temp);
-</script>
+
 <p id="checkFeedBack"></p>
 
 

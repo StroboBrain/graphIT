@@ -11,6 +11,7 @@ class SudokuMain {
     constructor(){
         this.puzzle = new Puzzle("easy");
         this.sudokuTable = new SudokuTable(this.puzzle);
+        this.updateSudokuTable();
     }
     // Function that is run, when the check solution button is pressed.
     checkSolution(){
@@ -24,6 +25,13 @@ class SudokuMain {
 
     isSolved(){
         return this.puzzle.isSolved();
+    }
+
+    updateSudokuTable(){
+        let tempTable = document.getElementById("sudokuTable");
+        console.log(tempTable);
+        let temp = this.getSudokuTable();
+        tempTable.parentNode.replaceChild(temp,tempTable);
     }
 
     changeCheckFeedBack(feedback){
@@ -66,8 +74,9 @@ class SudokuMain {
         }
 
         updateDifficulty(difficultyLevel){
-            this.puzzle = newPuzzle(difficultyLevel);
+            this.puzzle = new Puzzle(difficultyLevel);
             this.sudokuTable = new SudokuTable(this.puzzle);
+            this.updateSudokuTable();
         }
 
          //this function is called when a button is pressed in the sudoku
@@ -175,6 +184,7 @@ class SudokuTable{
 
     createBoard(Puzzle, table){
         table.innerHTML = ''; //We always want to reset the table
+        table.id = 'sudokuTable';
         let puzzleValues = Puzzle.getCurrentPuzzleAsGrid();
         //filles the table with the coresponding buttons
         for (var i = 0; i < 9; i++) {
