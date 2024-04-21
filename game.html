@@ -36,17 +36,22 @@
 <button id="mediumButton" onclick="updateDifficulty('medium')">medium</button>
 <button id="easyButton" onclick="updateDifficulty('easy')">easy</button>
 
-<script>
-        //starts an initial board
-    createBoard(currentPuzzle,document.getElementById('sudokuTable'));
-    </script>
+
 
 <table id="sudokuTable"></table>
-<!-- This textarea displays a feedback message if the check Solution Button is pressed -->
+<script>
+    let tempTable = document.getElementById("sudokuTable");
+    let temp = sudokuObject.getSudokuTable();
+    console.log(temp);
+    tempTable.parentNode.replaceChild(temp,tempTable);
+
+    console.log(temp);
+</script>
 <p id="checkFeedBack"></p>
 
 
 
-<button onClick = "checkSolution(currentPuzzle, currentPuzzleSolution)"> check solution</button>
+
+<button onClick = sudokuObject.checkSolution();> check solution</button>
 </body>
 </html>

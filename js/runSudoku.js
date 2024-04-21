@@ -1,127 +1,231 @@
 
-var difficulty = "easy"; // Default difficulty
-var currentPuzzle = newPuzzle();
-var currentPuzzleSolution;
-var currentPuzzleSolutionAsGrid = sudoku.board_string_to_grid(currentPuzzleSolution);
-console.assert(currentPuzzleSolution!==null);
+/**
+     *To run this class, the sudoku.js libary is needed, because it is old, it has no exports
+     */
 
 
-//is called when a difficulty button is pressed
-function updateDifficulty(difficultyLevel){
-    difficulty = difficultyLevel;
-    console.log("difficulty set to", difficulty);
-    newPuzzle();
-    createTable(document.getElementById('sudokuTable'));
-}
-
-
-
-
-//generates a new puzzle with the current difficulty
-function newPuzzle(){
-    currentPuzzle = sudoku.generate(difficulty);
-    currentPuzzleSolution = sudoku.solve(currentPuzzle);
-    console.log(currentPuzzle);
-    currentPuzzle = sudoku.board_string_to_grid(currentPuzzle);
-    return currentPuzzle;
-}
-
-
-//resets the table and loads it with a new Sudoku
-function createTable(table){
-    table.innerHTML = '';
-    createBoard(currentPuzzle,table);
-}
-
-function createBoard(puzzle, table){
-    //filles the table with the right buttons
-   
-    for (var i = 0; i < 9; i++) {
-        var row = document.createElement('tr');
-        for (var j = 0; j < 9; j++) {
-            var name = "SudokuField" + i + j;
-            var button = document.createElement('button');
-            button.id = name;
-            button.classList.add("sudokuButton");
-            // sudoku.js libary uses a . for an empty square, replace it with a ?
-            button.textContent = puzzle[i][j] === "." ?  "?" : puzzle[i][j];
-            //Only add a button to change, if it was not set at the beginning
-            if (button.textContent==="?"){
-                button.classList.add("sudokuButtonPressable");
-                button.style.background = '#ADD8E6';
-                button.onclick = function() {
-                    updateSudokuNumber(this);
-                };
-            }
-            row.appendChild(button);
+     /**
+      * the SudokuMain class holds a Puzzle and SudokuTable object. Where the Puzzle holds the numbers of a sudoku and the SudokuTable the html representation.
+      */
+class SudokuMain {
+    constructor(){
+        this.puzzle = new Puzzle("easy");
+        this.sudokuTable = new SudokuTable(this.puzzle);
+    }
+    // Function that is run, when the check solution button is pressed.
+    checkSolution(){
+        this.checkUserNumbers();
+        let feedback = "please try harder";1
+        if (this.isSolved()){
+            feedback = "we have a winner";
         }
-        table.appendChild(row);
-    }
-    
-}
-
-//this function is called when a button is pressed in the sudoku
-function updateSudokuNumber(button){
-    //switch case to update the button content on click.
-    switch (button.textContent){
-        case '?':
-            button.textContent="1";
-            break;
-        case '9':
-            button.textContent="?";
-            break;
-        default:
-            button.textContent= parseInt(button.textContent) + 1;
-    }
-    
-    //update the puzzle to . if the button is " " or the number
-    currentPuzzle[xCoordinates(button)][yCoordinates(button)]=button.textContent==='?'? "." : button.textContent;
-    console.log(currentPuzzle);
-}
-
-
-function xCoordinates (button){
-    return button.id[11];
-}
-function yCoordinates(button){
-    return button.id[12];
-}
-
-
-
-
-// Function that is run, when the check solution button is pressed.
-function checkSolution(gridToCheck, currentPuzzle){
-    checkUserNumbers();
-    let checking = sudoku.board_grid_to_string(gridToCheck);
-    document.getElementById('checkFeedBack').style.display = 'flex';
-    if (checking===currentPuzzleSolution) {
-        document.getElementById('checkFeedBack').innerHTML = "Winner!";
-    } else {
-        document.getElementById('checkFeedBack').innerHTML = "Try harder!";
+        this.changeCheckFeedBack(feedback);
     }
 
-}
+    isSolved(){
+        return this.puzzle.isSolved();
+    }
 
-// Checks the pressed Buttons and resets them if the are wrong
+    changeCheckFeedBack(feedback){
+        let feedbackBox = document.getElementById('checkFeedBack');
+        feedbackBox.innerHTML = feedback;
+        feedbackBox.style.display = 'flex';
 
-function checkUserNumbers(){
-    let buttonToCheck = document.getElementsByClassName('sudokuButtonPressable');
-    for(let i = 0; i < buttonToCheck.length; i++){
-        let button = buttonToCheck[i];
-        if (currentPuzzleSolutionAsGrid[xCoordinates(button)][yCoordinates(button)] == button.textContent){
-            button.style.backgroundColor = 'green'; //set the background to green
-            button.onclick = null; // button can't be pressed anymore
-        } else {
-            if (button.textContent!=='?'){
-                button.style.backgroundColor = 'red'; // red if you made a mistake
+    }
+
+        // checks all the number and colors the button accordingly. Removes the pressable function if it is correct.
+        /*
+        * generates a new puzzle with the current difficulty
+        * @precondition: difficultyLevel is a valid difficulty
+        * @postcondition: puzzle and solutions will be updated
+        * @param {*} difficultyLevel 
+         * @returns currentPuzzle object
+        */
+        
+
+        checkUserNumbers(){
+            let buttonToCheck = document.getElementsByClassName('sudokuButtonPressable');
+            for(let i = 0; i < buttonToCheck.length; i++){
+                let button = buttonToCheck[i];
+                let check = this.puzzle.getSolutionAsGrid();
+                //button.id[11] is the x axis an 12 is the y axis, because Button.id = SudokuFieldxy
+                if (check[button.id[11]][button.id[12]] === button.textContent){
+                    button.style.backgroundColor = 'green'; //set the background to green
+                    button.onclick = null; // button can't be pressed anymore
+                } else {
+                    if (button.textContent!=='?'){
+                        button.style.backgroundColor = 'red'; // red if you made a mistake
+                    }        
+                }
             }
+        }
+
+        getSudokuTable(){
+            return this.sudokuTable.getSudokuHTMLTable();
             
         }
+
+        updateDifficulty(difficultyLevel){
+            this.puzzle = newPuzzle(difficultyLevel);
+            this.sudokuTable = new SudokuTable(this.puzzle);
+        }
+
+         //this function is called when a button is pressed in the sudoku
+         updateSudokuNumber(button){
+            //switch case to update the button content on click.
+            switch (button.textContent){
+                case '?':
+                    button.textContent="1";
+                    break;
+                case '9':
+                    button.textContent="?";
+                    break;
+                default:
+                    console.assert(button.textContent>=1&&button.textContent<=8);
+                    button.textContent= parseInt(button.textContent) + 1;
+            }
+            let xAxis = button.id[11];
+            let yAxis = button.id[12];
+            this.puzzle.changeNumberCurrentPuzzle(xAxis,yAxis,button.textContent);
+        
     }
 
 
-} 
+    
+
+
+}
+/**
+     * The puzzle object holds the current values for the sudoku, difficulty and solution
+     * Initialize all the variable in the constructor to give a better overview
+     */
+class Puzzle {
+    constructor(difficultyLevel){
+        this.difficulty = difficultyLevel;
+        this.currentPuzzleAsString;
+        this.currentPuzzleAsGrid;
+        this.currentPuzzleAsString;
+        this.currentPuzzleSolutionAsGrid;
+        this.currentPuzzleSolutionAsString;
+        this.updatePuzzle(difficultyLevel);
+        console.log(this);
+    }
+
+    /**
+     * generates a new puzzle with the current difficulty
+     * @precondition: difficultyLevel is a valid difficulty
+     * @postcondition: puzzle and solutions will be updated
+     * @param {*} difficultyLevel 
+     * @returns currentPuzzle object
+     */
+
+    updatePuzzle(difficultyLevel){
+        this.currentPuzzleAsString = sudoku.generate(difficultyLevel);
+        this.currentPuzzleAsGrid = sudoku.board_string_to_grid(this.currentPuzzleAsString);
+        this.currentPuzzleSolutionAsString = sudoku.solve(sudoku.board_grid_to_string(this.currentPuzzleAsGrid));
+        this.currentPuzzleSolutionAsGrid = sudoku.board_string_to_grid(this.currentPuzzleSolutionAsString);
+    }
+
+
+    getSolutionAsGrid(){
+        return this.currentPuzzleSolutionAsGrid;
+    }
+    getSolutionAsString(){
+        return this.currentPuzzleSolutionAsGrid;
+    }
+    getCurrentPuzzleAsGrid(){
+        return this.currentPuzzleAsGrid;
+    }
+    getCurrentPuzzleAsString(){
+        return this.currentPuzzleAsString;
+    }
+    /**
+     * @precondition: only gets passed valid squares and numbers 1-9 or a "?"
+     * @postcondition: puzzle and solutions will be updated
+     * 
+     * @param {int 0-8} x Axis 
+     * @param {int 0-8} y Axis
+     * @param {int 1-9 or ?} number 
+     */
+    changeNumberCurrentPuzzle(x,y,number){
+        this.currentPuzzleAsGrid[x][y] = number==="?"? "." : number;
+        this.currentPuzzleAsString = sudoku.board_grid_to_string(this.currentPuzzleAsGrid);
+        console.log(this.currentPuzzleAsGrid);
+
+    }
+
+    isSolved(){
+        return this.currentPuzzleAsString===this.currentPuzzleSolutionAsString;
+    }
+
+
+}
+
+
+   
+
+
+
+
+class SudokuTable{
+    constructor(Puzzle){
+        this.table = document.createElement('table');
+        this.createBoard(Puzzle, this.table);
+    }
+
+    createBoard(Puzzle, table){
+        table.innerHTML = ''; //We always want to reset the table
+        let puzzleValues = Puzzle.getCurrentPuzzleAsGrid();
+        //filles the table with the coresponding buttons
+        for (var i = 0; i < 9; i++) {
+            var row = document.createElement('tr');
+            for (var j = 0; j < 9; j++) {
+                var name = "SudokuField" + i + j;
+                var button = document.createElement('button');
+                button.id = name;
+                button.classList.add("sudokuButton");
+                // sudoku.js libary uses a . for an empty square, replace it with a ?
+                button.textContent = puzzleValues[i][j] === "." ?  "?" : puzzleValues[i][j];
+                //Only add a button to change, if it was not set at the beginning
+                if (button.textContent==="?"){
+                    button.classList.add("sudokuButtonPressable");
+                    button.style.background = '#ADD8E6';
+                    button.onclick = function() {
+                        sudokuObject.updateSudokuNumber(this);
+                    };
+                }
+                row.appendChild(button);
+            }
+            table.appendChild(row);
+        }
+    }
+
+  
+
+    //get the coordinates of a button by extractin the information form the id
+    xCoordinates (button){
+        return button.id[11];
+    }
+    yCoordinates(button){
+        return button.id[12];
+    }
+
+    getSudokuHTMLTable(){
+        return this.table;
+    }
+}
+
+
+//create a puzzle object, well be refactored in a different class in the futur
+var sudokuObject = new SudokuMain();
+function updateDifficulty(difficultyLevel){
+    sudokuObject.updateDifficulty(difficultyLevel);
+    console.log("updated Difficulty to",difficultyLevel);
+}
+
+
+
+
 
 
 
