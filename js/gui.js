@@ -59,7 +59,7 @@ function getRandomPosition(button, container) {
  */
 function createContainer(controller,container){
     console.log(controller);
-    let array = controller.getNewTask(2);
+    let array = controller.getNewTask(3);
     console.log(array);
 
     let buttons = document.getElementsByClassName("equationButton")
