@@ -58,8 +58,8 @@ function createContainer(array,controller){
     //Create a new container
     let container = document.createElement("div");
     container.className = "container";
-    container.style.width = "80vw";
-    container.style.height = "80vh";
+    container.style.width = "80%";
+    container.style.height = "80%";
     container.style.border = "1px solid black";
     container.style.padding = "2vw";
     container.style.marginTop = "10%"
@@ -67,9 +67,8 @@ function createContainer(array,controller){
         for (let i = 0; i < array.length; i++) {
             let name = "button" + String(i);
             let button = document.createElement("button");
-            button.style.width = "15vw"; 
-            button.style.height = "15vw";
-            button.style.radius = "50%";
+            button.style.width = "20%";
+            button.style.boarderRadius = "50%";
             button.setAttribute('id', name);
             button.textContent = array[i];
             button.className = 'equationButton';
@@ -90,18 +89,19 @@ function createContainer(array,controller){
 
     function createTextArea(){
         
-        var textarea = document.createElement('textarea');
+        var textarea = document.createElement('div');
         textarea.style.width = "60%";
         textarea.style.float = "left";
+        textarea.style.border = "1px solid black";
         textarea.setAttribute('id','textarea');
-        textarea.placeholder = "go Bitch";
+        textarea.textContent = "";
         return textarea
     }
 
     function createRedoButton(){
-        width = "30%";
-        float =  "left";
         var redoButton = document.createElement('button');
+        redoButton.style.width = "30%";
+        redoButton.style.float = "right";
         redoButton.className = 'redo-button';
         redoButton.textContent = 'Redo Button';
         //TODO onclick()
@@ -115,7 +115,17 @@ function createContainer(array,controller){
         gameParent.style.height = "90vh";
         gameParent.style.padding = "2vw";
         return gameParent
-
     }
+
+    function feedback(correct){
+        if (correct){
+            document.body.style.background = "green";
+
+        } else {
+            document.body.style.background = "red";
+        }
+    }
+
+
 
 
