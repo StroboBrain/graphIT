@@ -107,7 +107,7 @@ function createContainer(array){
         return redoButton
 
     }
-    function createContainer(){
+    function createGameParent(){
         let container = document.createElement("div");
         container.className = "wholeGame";
         container.style.width = "90vw";
