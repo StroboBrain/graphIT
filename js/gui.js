@@ -31,7 +31,10 @@ function getRandomPosition(button, container) {
     // Calculate a random position for the button
     let randomPosition = getRandomPosition(button, container);
     let x = randomPosition[0];
-    let y = randomPosition[1];
+    let y = randomPosition[1]; //Hotfix that the buttons are not on top
+    if (y<20){
+        y = 30;
+    }
 
     // Check for overlap with existing buttons in the container
     var buttons = container.getElementsByClassName('equationButton');
@@ -47,8 +50,8 @@ function getRandomPosition(button, container) {
         }
     }
     // If there is no overlap, position the button
-    button.style.left = x + 'vw';
-    button.style.top = y + 'vh';
+    button.style.left = x + '%';
+    button.style.top = y + '%';
 }
 
 /**
@@ -58,10 +61,9 @@ function createContainer(array,controller){
     //Create a new container
     let container = document.createElement("div");
     container.className = "container";
-    container.style.width = "100%";
-    container.style.height = "100%";
+    container.style.width = "90vw";
+    container.style.height = "80vh";
     container.style.border = "1px solid black";
-    container.style.padding = "2vw";
     container.style.marginTop = "20%"
 
         for (let i = 0; i < array.length; i++) {
@@ -114,8 +116,8 @@ function createContainer(array,controller){
     function createGameParent(){
         let gameParent = document.createElement("div");
         gameParent.className = "wholeGame";
-        gameParent.style.width = "90vw";
-        gameParent.style.height = "90vh";
+        gameParent.style.width = "100vw";
+        gameParent.style.height = "100vh";
         gameParent.style.padding = "2vw";
         return gameParent
     }
