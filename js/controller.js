@@ -29,13 +29,11 @@ class Controller {
     addClickedElement(element) {
         this.clickedElements.push(element);
         console.log(`Clicked elements: ${this.clickedElements}`);
-        console.log(this.clickedElements);
-        console.log(this.currentTask.length);
-
 
         if(this.currentTask.length === this.clickedElements.length){
-            let resultValid = this.modeler.checkResults(this.clickedElements);
+            let resultValid = this.modeler.checkResult(this.clickedElements);
+            console.log(resultValid);
+            feedback(resultValid);
         }
-        console.log(resultValid);
     }
 }
