@@ -70,7 +70,6 @@ function createContainer(array,controller){
             button.style.width = "15vw"; 
             button.style.height = "15vw";
             button.style.radius = "50%";
-            console.log(container.style.width);
             button.setAttribute('id', name);
             button.textContent = array[i];
             button.className = 'equationButton';

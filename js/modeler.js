@@ -36,7 +36,6 @@ class Modeler {
             formula.push(this.getRandomOperator());
           }
         formula.push(this.getRandomNumber());
-        console.log(this.getRandomOperator());
         return formula;
     }
 

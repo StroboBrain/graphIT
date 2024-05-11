@@ -8,6 +8,7 @@
 
 <script src="js/gui.js"></script>
 <script src="js/controller.js"></script>
+<script src="js/modeler.js"></script>
 
 
 </head>
@@ -16,11 +17,10 @@
 <script>
     window.onload = function() {
 
-    const TaskCreater = new Modeler();
-    const controller = new Controller();
-    // const viewer = new Viewer(controller);    
+    const TaskCreater = new Modeler(50);
+    const controller = new Controller(TaskCreater);
 
-    let array = TaskCreater.getNewPuzzle();
+    let array = controller.getNewTask();
 
     let container = createContainer(array,controller);
     let redoButton = createRedoButton();
@@ -30,8 +30,6 @@
     gameParent.appendChild(redoButton);
     gameParent.appendChild(container);
     
-    
-
     document.body.appendChild(gameParent);
     };
 </script>
