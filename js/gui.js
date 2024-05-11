@@ -58,11 +58,11 @@ function createContainer(array,controller){
     //Create a new container
     let container = document.createElement("div");
     container.className = "container";
-    container.style.width = "80%";
-    container.style.height = "80%";
+    container.style.width = "100%";
+    container.style.height = "100%";
     container.style.border = "1px solid black";
     container.style.padding = "2vw";
-    container.style.marginTop = "10%"
+    container.style.marginTop = "20%"
 
         for (let i = 0; i < array.length; i++) {
             let name = "button" + String(i);
@@ -92,6 +92,7 @@ function createContainer(array,controller){
         
         var textarea = document.createElement('div');
         textarea.style.width = "60%";
+        textarea.style.height = "5%";
         textarea.style.float = "left";
         textarea.style.border = "1px solid black";
         textarea.setAttribute('id','textarea');
@@ -102,9 +103,10 @@ function createContainer(array,controller){
     function createRedoButton(){
         var redoButton = document.createElement('button');
         redoButton.style.width = "30%";
+        redoButton.style.height = "5%";
         redoButton.style.float = "right";
         redoButton.className = 'redo-button';
-        redoButton.textContent = 'Redo Button';
+        redoButton.textContent = 'Redo';
         //TODO onclick()
         return redoButton
 
