@@ -114,6 +114,7 @@ class Modeler {
      * checkResult(["3", "+", "4", "-"", "5", "+"", "9", "=", "11"]);
      */
     checkResult(result) {
+        console.log("CheckResult: " + result);
         let index = result.indexOf("=");
         let left = this.formulaToString(result.slice(0, index));
         let right = this.formulaToString(result.slice(index + 1, result.length));
