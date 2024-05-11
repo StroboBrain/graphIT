@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="css/gui.css">
 
 <script src="js/gui.js"></script>
+<script src="js/controller.js"></script>
 
 
 </head>
@@ -15,8 +16,13 @@
 <script>
     window.onload = function() {
 
-    let array = ["2","+","3","=","6","-","1"];
-    let container = createContainer(array);
+    const TaskCreater = new Modeler();
+    const controller = new Controller();
+    // const viewer = new Viewer(controller);    
+
+    let array = TaskCreater.getNewPuzzle();
+
+    let container = createContainer(array,controller);
     let redoButton = createRedoButton();
     let gameParent = createGameParent();
     let textArea = createTextArea();

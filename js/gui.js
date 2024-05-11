@@ -1,7 +1,4 @@
 
-
-
-
 /**
  * returns the random x and y coordinates 
  */
@@ -11,17 +8,13 @@ function getNumberFromString(str) {
 }
 
 function getRandomPosition(button, container) {
-    console.log(button.style.width);
     // Calculate a random position for the button
     let containerWidth = getNumberFromString(container.style.width);
     let containerHeight = getNumberFromString(container.style.height);
     let buttonWidth = getNumberFromString(button.style.width);
     let buttonHeight = getNumberFromString(button.style.height);
-    console.log(buttonWidth);
     let x = Math.random() * (containerWidth - buttonWidth);
     let y = Math.random() * (containerHeight - buttonHeight);
-    console.log(x)
-    console.log(Math.random());
     return [x, y];
   }
 
@@ -61,7 +54,7 @@ function getRandomPosition(button, container) {
 /**
  * Creates the container with the buttons
  */
-function createContainer(array){
+function createContainer(array,controller){
     //Create a new container
     let container = document.createElement("div");
     container.className = "container";
@@ -81,6 +74,12 @@ function createContainer(array){
             button.setAttribute('id', name);
             button.textContent = array[i];
             button.className = 'equationButton';
+            button.onclick = function() {
+                console.log(button.textContent);
+                controller.addClickedElement(button.textContent)
+                button.disabled = true;
+                button.style.backgroundColor= "grey";
+            }
             //TODO implement onclick()
             positionButton(container, button)
             container.appendChild(button);
@@ -117,3 +116,5 @@ function createContainer(array){
         return gameParent
 
     }
+
+
