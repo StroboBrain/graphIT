@@ -333,12 +333,11 @@ textarea {
 
 @media screen and (min-width: 501px) {
   div#pageLogo {
-    height: 25vw;
-    width: 25vw;
-    background: url(../icons/android-chrome-512x512.png) no-repeat;
+    height: 50vw;
+    width: 50vw;
+    background: url(../icons/logo_fullsize.png) no-repeat;
     background-size: contain;
     position: relative;
-    left: 50%;
     margin-left: -12.5vw;
   }
   body {
