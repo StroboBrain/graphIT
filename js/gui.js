@@ -78,6 +78,8 @@ function createContainer(array,controller){
                 controller.addClickedElement(button.textContent)
                 button.disabled = true;
                 button.style.backgroundColor= "grey";
+                textarea = document.getElementById("textarea");
+                textarea.textContent += button.textContent;
             }
             //TODO implement onclick()
             positionButton(container, button)
@@ -92,7 +94,7 @@ function createContainer(array,controller){
         textarea.style.width = "60%";
         textarea.style.float = "left";
         textarea.setAttribute('id','textarea');
-        textarea.textContent = 'Go Bitch';
+        textarea.placeholder = "go Bitch";
         return textarea
     }
 
