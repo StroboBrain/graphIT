@@ -1,16 +1,23 @@
 class Modeler {
     /**
      * @constructor
-     * @param {number} maxValue Maximal value of a single number in the equation
+     * @param {number} [maxValue=100] Maximal value of a single number in the equation
+     * @param {array} [operators=["+", "-", "*", "/"]] An array containing the operators that should be used in the equations.
+     *                                                 Allowed operators: ["+", "-", "*", "/"]
+     * @example
+     * new Modeler(4, ["+", "-", "*", "/"]);
      */
-    constructor(maxValue) {
+    constructor(maxValue, operators) {
         if (maxValue === undefined) {
             maxValue = 100;
         }
         this.maxValue = maxValue;
 
         // operators that can be used
-        this.operators = ["+", "-"];
+        if (operators === undefined) {
+            operators = ["+", "-", "*", "/"];
+        }
+        this.operators = operators;
 
         // the puzzle to solve
         this.puzzle = new Array();
@@ -31,13 +38,59 @@ class Modeler {
         const formula = new Array();
 
         // Fill resulting array with numbers and operators
-        for (let i = 0; i < amountOfNumbers - 1; i++) {
-            formula.push(this.getRandomNumber());
-            formula.push(this.getRandomOperator());
-          }
         formula.push(this.getRandomNumber());
+        for (let i = 1; i < amountOfNumbers - 1; i++) {
+            let operator = this.getRandomOperator();
+            // If the operation is division, then calculate the result of the last punctuation results
+            // if this result has a divisor, then take one of them as the next number
+            // otherwise, take another operator (resp. go one iteration back)
+            // This must be done so that no floating point results occur
+            if (operator == "/") {
+                // get formula until last - or +
+                let lastPositionPlus = formula.lastIndexOf("+");
+                let lastPositionMinus = formula.lastIndexOf("-");
+                let lastPosition = Math.max(lastPositionMinus, lastPositionPlus);
+                let tempResult = eval(this.formulaToString(formula.slice(lastPosition + 1, formula.length)));
+                // get divisors of this subformula
+                let divisors = this.divisors(tempResult);
+                // if divisors found, take one of them randomly as next number
+                if (divisors.length > 0) {
+                    let num = divisors[Math.floor(Math.random() * divisors.length)];
+                    formula.push(operator);
+                    formula.push(num.toString());
+                }
+                // if no divisor is found, do another iteration (until another operator is taken randomly)
+                else {
+                    i = i - 1;
+                    continue;
+                }
+            }
+            // for the other operators, the problem of resulting floating point values can be ignored
+            else {
+                formula.push(operator);
+                formula.push(this.getRandomNumber());
+            }
+          }
         return formula;
     }
+
+    /**
+     * This function returns all divisors of an integer including itself
+     * @param {number} integer an aritrary integer
+     * @returns {array} An array containing all divisors of the input integer
+     * @example
+     * // [2, 4]
+     * divisors(4);
+     */
+    divisors(integer) {
+        let divisors = [];
+        for (let i = 2; i <= integer; i++) {
+            if (integer % i == 0) {
+                divisors.push(i)
+            }
+        }
+        return divisors;
+    };
 
     /**
      * This function creates a random number between 0 and maxValue
@@ -128,10 +181,13 @@ class Modeler {
 
 
 
-// const myModeler = new Modeler(100);
+// const myModeler = new Modeler();
 
 // let puzzle = myModeler.getNewPuzzle(5);
 // console.log(puzzle);
 
 // let result = ['44', '+', '13', '=', '57'];
 // console.log(myModeler.checkResult(result));
+
+// console.log(myModeler.divisors(20));
+
