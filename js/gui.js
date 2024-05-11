@@ -57,9 +57,19 @@ function getRandomPosition(button, container) {
 /**
  * Creates the container with the buttons
  */
-function createContainer(array,controller){
-    //Create a new container
-    let container = document.createElement("div");
+function createContainer(controller,container){
+    console.log(controller);
+    let array = controller.getNewTask(2);
+    console.log(array);
+
+    let buttons = document.getElementsByClassName("equationButton")
+
+    for (var i = buttons.length - 1; i >= 0; --i) {
+        buttons[i].remove();
+      }
+
+    //Create a new container    
+    // let container = document.createElement("div");
     container.className = "container";
     container.setAttribute('id', "buttonContainer");
     container.style.width = "90vw";
@@ -68,6 +78,7 @@ function createContainer(array,controller){
     container.style.marginTop = "20%"
 
         for (let i = 0; i < array.length; i++) {
+            console.log(array[i]);
             let name = "button" + String(i);
             let button = document.createElement("button");
             button.style.width = "15vw";
@@ -103,14 +114,14 @@ function createContainer(array,controller){
         return textarea
     }
 
-    function createRedoButton(){
+    function createRedoButton(controller,container){
         var redoButton = document.createElement('button');
         redoButton.style.width = "30%";
         redoButton.style.height = "5%";
         redoButton.style.float = "right";
         redoButton.className = 'redo-button';
         redoButton.textContent = 'Redo';
-        //TODO onclick()
+        redoButton.onclick = function(){ createContainer(controller,container)}
         return redoButton
 
     }

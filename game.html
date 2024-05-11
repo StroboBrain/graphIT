@@ -6,9 +6,9 @@
 <title>Lazer Number Game</title>
 <link rel="stylesheet" href="css/gui.css">
 
-<script src="js/gui.js"></script>
 <script src="js/controller.js"></script>
 <script src="js/modeler.js"></script>
+<script src="js/gui.js"></script>
 
 
 </head>
@@ -17,13 +17,14 @@
 <script>
     window.onload = function() {
 
-    const TaskCreater = new Modeler(50);
+    const TaskCreater = new Modeler(50,["+", "-", "*", "/"]);
     const controller = new Controller(TaskCreater);
 
-    let array = controller.getNewTask(2);
+    let container = document.createElement("div");
 
-    let container = createContainer(array,controller);
-    let redoButton = createRedoButton();
+    container = createContainer(controller,container);
+
+    let redoButton = createRedoButton(controller,container);
     let gameParent = createGameParent();
     let textArea = createTextArea();
     gameParent.appendChild(textArea);
