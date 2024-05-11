@@ -67,8 +67,9 @@ function createContainer(array,controller){
         for (let i = 0; i < array.length; i++) {
             let name = "button" + String(i);
             let button = document.createElement("button");
-            button.style.width = "20%";
-            button.style.boarderRadius = "50%";
+            button.style.width = "15vw";
+            button.style.height = "15vw";
+            button.style.borderRadius = '50%';
             button.setAttribute('id', name);
             button.textContent = array[i];
             button.className = 'equationButton';

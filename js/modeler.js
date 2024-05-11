@@ -125,7 +125,7 @@ class Modeler {
 }
 
 
-}
+
 
 // const myModeler = new Modeler(100);
 
