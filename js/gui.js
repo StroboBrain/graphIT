@@ -5,12 +5,25 @@
 /**
  * returns the random x and y coordinates 
  */
+function getNumberFromString(str) {
+    let numStr = str.replace(/\D/g, '');
+    return Number(numStr);
+}
+
 function getRandomPosition(button, container) {
-    let containerRect = container.getBoundingClientRect();
-    let buttonRect = button.getBoundingClientRect();
+
+    
+    console.log(button.style.width);
     // Calculate a random position for the button
-    let x = Math.random() * (containerRect.width - buttonRect.width);
-    let y = Math.random() * (containerRect.height - buttonRect.height);
+    let containerWidth = getNumberFromString(container.style.width);
+    let containerHeight = getNumberFromString(container.style.height);
+    let buttonWidth = getNumberFromString(button.style.width);
+    let buttonHeight = getNumberFromString(button.style.height);
+    console.log(buttonWidth);
+    let x = Math.random() * (containerWidth - buttonWidth);
+    let y = Math.random() * (containerHeight - buttonHeight);
+    console.log(x)
+    console.log(Math.random());
     return [x, y];
   }
 
@@ -44,9 +57,8 @@ function getRandomPosition(button, container) {
     }
 
     // If there is no overlap, position the button
-    button.style.position = 'absolute';
-    button.style.left = x + 'px';
-    button.style.top = y + 'px';
+    button.style.left = x + 'vw';
+    button.style.top = y + 'vh';
 }
 
 /**
@@ -64,6 +76,10 @@ function createContainer(array){
         for (let i = 0; i < array.length; i++) {
             let name = "button" + String(i);
             let button = document.createElement("button");
+            button.style.width = "10vw"; 
+            button.style.height = "10vw";
+            button.style.radius = "50%";
+            console.log(container.style.width);
             button.setAttribute('id', name);
             button.textContent = array[i];
             button.className = 'equationButton';

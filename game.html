@@ -8,23 +8,17 @@
 
 <script src="js/gui.js"></script>
 
-<style>
-  .container {
-    position: relative;
-    border: 1px solid black;
-    width: 90vw;
-    height: 90vh;
-    padding: 2vw;
-  }
-</style>
+
 </head>
 <body>
 
 <script>
+    window.onload = function() {
+
     let array = ["2","+","3","=","6","-","1"];
     let container = createContainer(array);
     document.body.appendChild(container);
-
+    };
 </script>
 
 </body>
