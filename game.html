@@ -1,32 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<!-- This page hosts the game part of sudoKUH -->
 <head>
-    <meta charset="utf-8">
-    <title>graphIT</title>
-    <meta name="description" content="A simple Sudoku PWA">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="manifest" href="app.webmanifest">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Non-Overlapping Buttons</title>
+<link rel="stylesheet" href="css/gui.css">
 
-    <link rel="manifest" href="/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
+<script src="js/gui.js"></script>
 
-    <meta name="theme-color" content="#ffffff">
-
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    
-    <table id="sudokuTable"></table>
-    <script src="js/sudoku.js"></script>
-    <script src="js/runSudoku.js"></script>
-    
-    
-    
-  
 
 </head>
 <body>
-<h1 id="title">graphIT</h1>
+
+<script>
+    window.onload = function() {
+
+    let array = ["2","+","3","=","6","-","1"];
+    let container = createContainer(array);
+    let redoButton = createRedoButton();
+    
+
+
+    document.body.appendChild(container);
+    };
+</script>
 
 </body>
 </html>

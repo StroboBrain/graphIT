@@ -1,0 +1,9 @@
+/* Holds the css for the gui
+ */
+
+ .equationButton{
+        position: absolute;
+        width: 10vw; /* Adjust button size as needed */
+        height: 10vw;
+        border-radius: 50%;
+ }

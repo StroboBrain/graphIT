@@ -1,3 +1,3 @@
 # graphIT
-simple try at a graph based pwa game.  
+simple try at a numberIT pwa game.  
 
