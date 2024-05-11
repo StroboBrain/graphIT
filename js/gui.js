@@ -11,8 +11,6 @@ function getNumberFromString(str) {
 }
 
 function getRandomPosition(button, container) {
-
-    
     console.log(button.style.width);
     // Calculate a random position for the button
     let containerWidth = getNumberFromString(container.style.width);
@@ -55,7 +53,6 @@ function getRandomPosition(button, container) {
             return positionButton(container, button);
         }
     }
-
     // If there is no overlap, position the button
     button.style.left = x + 'vw';
     button.style.top = y + 'vh';
@@ -89,6 +86,37 @@ function createContainer(array){
         }
     return container
     }
+
+    function createTextArea(){
+        
+        var textarea = document.createElement('textarea');
+        textarea.style.width = "70%";
+        textarea.style.float = "left";
+        textarea.setAttribute('id','textarea');
+        textarea.placeholder = 'Go Bitch';
+        return textarea
+    }
+
+    function createRedoButton(){
+        width = "20%";
+        float =  "left";
+        var redoButton = document.createElement('button');
+        redoButton.className = 'redo-button';
+        redoButton.textContent = 'Redo Button';
+        //TODO onclick()
+        return redoButton
+
+    }
+    function createContainer(){
+        let container = document.createElement("div");
+        container.className = "wholeGame";
+        container.style.width = "90vw";
+        container.style.height = "90vh";
+        container.style.padding = "2vw";
+        return container
+
+    }
+
 
 
 
