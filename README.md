@@ -1,2 +1,3 @@
-# sudoKUH  
-based on the code of the tipcalculator form John Wargo
+# graphIT
+simple try at a graph based pwa game.  
+

@@ -3,7 +3,7 @@
 <!-- This page hosts the game part of sudoKUH -->
 <head>
     <meta charset="utf-8">
-    <title>play Sudoku</title>
+    <title>graphIT</title>
     <meta name="description" content="A simple Sudoku PWA">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="app.webmanifest">
@@ -26,25 +26,7 @@
 
 </head>
 <body>
-<h1 id="title">Solve the Sudoku by clicking the ?</h1>
+<h1 id="title">graphIT</h1>
 
-<table id="sudokuTable"></table>
-
-<button id='replayButton' onclick="location.reload();">restart</button>
-
-<button id="hardButton" onclick="sudokuObject.updateDifficulty('hard')">hard</button>
-<button id="mediumButton" onclick="sudokuObject.updateDifficulty('medium')">medium</button>
-<button id="easyButton" onclick="sudokuObject.updateDifficulty('easy')">easy</button>
-
-
-
-
-
-<p id="checkFeedBack"></p>
-
-
-
-
-<button onClick = sudokuObject.checkSolution();> check solution</button>
 </body>
 </html>
