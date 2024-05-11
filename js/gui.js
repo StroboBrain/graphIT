@@ -61,6 +61,7 @@ function createContainer(array,controller){
     //Create a new container
     let container = document.createElement("div");
     container.className = "container";
+    container.setAttribute('id', "buttonContainer");
     container.style.width = "90vw";
     container.style.height = "80vh";
     container.style.border = "1px solid black";
