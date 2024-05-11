@@ -81,7 +81,6 @@ class Modeler {
      */
     solveFormula(formula) {
         let formulaString = this.formulaToString(formula);
-        //console.log(formulaString);
         return eval(formulaString);
     }
 
@@ -106,8 +105,32 @@ class Modeler {
         return this.puzzle;
     }
 
+    /**
+     * this function checks if an equation is correct
+     * @param {array} result an Array containing an equation
+     * @returns {bool} true if the left and right sides of the equals sign give the same result
+     * @example
+     * // Returns true
+     * checkResult(["3", "+", "4", "-"", "5", "+"", "9", "=", "11"]);
+     */
+    checkResult(result) {
+        let index = result.indexOf("=");
+        let left = this.formulaToString(result.slice(0, index));
+        let right = this.formulaToString(result.slice(index + 1, result.length));
+        let resultLeft = eval(left);
+        let resultRight = eval(right);
+        let check = resultLeft == resultRight;
+        return check;
+    }
+}
+
+
 }
 
 // const myModeler = new Modeler(100);
-// let solution = myModeler.getNewPuzzle(5);
-// console.log(solution);
+
+// let puzzle = myModeler.getNewPuzzle(5);
+// console.log(puzzle);
+
+// let result = ['44', '+', '13', '=', '57'];
+// console.log(myModeler.checkResult(result));
