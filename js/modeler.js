@@ -124,6 +124,9 @@ class Modeler {
     }
 }
 
+
+}
+
 // const myModeler = new Modeler(100);
 
 // let puzzle = myModeler.getNewPuzzle(5);

@@ -20,7 +20,7 @@
     const TaskCreater = new Modeler(50);
     const controller = new Controller(TaskCreater);
 
-    let array = controller.getNewTask();
+    let array = controller.getNewTask(2);
 
     let container = createContainer(array,controller);
     let redoButton = createRedoButton();
