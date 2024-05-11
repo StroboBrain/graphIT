@@ -69,12 +69,13 @@ function createContainer(array){
     container.style.height = "80vh";
     container.style.border = "1px solid black";
     container.style.padding = "2vw";
+    container.style.marginTop = "10%"
 
         for (let i = 0; i < array.length; i++) {
             let name = "button" + String(i);
             let button = document.createElement("button");
-            button.style.width = "10vw"; 
-            button.style.height = "10vw";
+            button.style.width = "15vw"; 
+            button.style.height = "15vw";
             button.style.radius = "50%";
             console.log(container.style.width);
             button.setAttribute('id', name);
@@ -90,15 +91,15 @@ function createContainer(array){
     function createTextArea(){
         
         var textarea = document.createElement('textarea');
-        textarea.style.width = "70%";
+        textarea.style.width = "60%";
         textarea.style.float = "left";
         textarea.setAttribute('id','textarea');
-        textarea.placeholder = 'Go Bitch';
+        textarea.textContent = 'Go Bitch';
         return textarea
     }
 
     function createRedoButton(){
-        width = "20%";
+        width = "30%";
         float =  "left";
         var redoButton = document.createElement('button');
         redoButton.className = 'redo-button';
@@ -108,18 +109,11 @@ function createContainer(array){
 
     }
     function createGameParent(){
-        let container = document.createElement("div");
-        container.className = "wholeGame";
-        container.style.width = "90vw";
-        container.style.height = "90vh";
-        container.style.padding = "2vw";
-        return container
+        let gameParent = document.createElement("div");
+        gameParent.className = "wholeGame";
+        gameParent.style.width = "90vw";
+        gameParent.style.height = "90vh";
+        gameParent.style.padding = "2vw";
+        return gameParent
 
     }
-
-
-
-
-
-
-

@@ -18,10 +18,15 @@
     let array = ["2","+","3","=","6","-","1"];
     let container = createContainer(array);
     let redoButton = createRedoButton();
+    let gameParent = createGameParent();
+    let textArea = createTextArea();
+    gameParent.appendChild(textArea);
+    gameParent.appendChild(redoButton);
+    gameParent.appendChild(container);
+    
     
 
-
-    document.body.appendChild(container);
+    document.body.appendChild(gameParent);
     };
 </script>
 
