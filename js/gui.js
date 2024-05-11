@@ -121,7 +121,16 @@ function createContainer(controller,container){
         redoButton.style.float = "right";
         redoButton.className = 'redo-button';
         redoButton.textContent = 'Redo';
-        redoButton.onclick = function(){ createContainer(controller,container)}
+        redoButton.onclick = function(){ 
+            createContainer(controller,container);
+            redoButton.textContent = "Reload";
+            controller.clickedElements = []
+            textarea = document.getElementById("textarea");
+
+            textarea.textContent = "";
+            document.body.style.background = "white";
+        }
+
         return redoButton
 
     }
@@ -135,11 +144,17 @@ function createContainer(controller,container){
     }
 
     function feedback(correct){
+        var redoButton = document.getElementsByClassName('redo-button')[0];
+
         if (correct){
             document.body.style.background = "green";
+            redoButton.textContent = "Great! Next puzzle";
+
 
         } else {
             document.body.style.background = "red";
+            redoButton.textContent = "Try a new puzzle";
+
         }
     }
 
