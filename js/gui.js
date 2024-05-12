@@ -21,38 +21,28 @@ function getRandomPosition(button, container) {
   /**
    * Avoids collision for the buttons
    */
-  function positionButton(container, button) {
-    // Get the dimensions of the container and the button
-    let containerWidth = container.offsetWidth;
-    let containerHeight = container.offsetHeight;
-    let buttonWidth = button.offsetWidth;
-    let buttonHeight = button.offsetHeight;
-
-    // Calculate a random position for the button
-    let randomPosition = getRandomPosition(button, container);
-    let x = randomPosition[0];
-    let y = randomPosition[1]; //Hotfix that the buttons are not on top
-    if (y<20){
-        y = 30;
-    }
-
-    // Check for overlap with existing buttons in the container
-    var buttons = container.getElementsByClassName('equationButton');
-    for (var i = 0; i < buttons.length; i++) {
-        // Get the left and top position of the existing button
-        let existingButtonLeft = parseInt(buttons[i].style.left);
-        let existingButtonTop = parseInt(buttons[i].style.top);
-
-        if (x < existingButtonLeft + buttonWidth && x + buttonWidth > existingButtonLeft &&
-            y < existingButtonTop + buttonHeight && y + buttonHeight > existingButtonTop) {
-            // If there is an overlap, call the function again
-            return positionButton(container, button);
+function positionButtons(container) {
+    var buttons = container.children;
+    //create an array with possible positions
+    let positions = [];
+    for (let k = 0; k<8;k++){
+        for (let l = 0; l<8;l++){
+            positions.push([2+k*10,10+l*10]);
         }
     }
-    // If there is no overlap, position the button
-    button.style.left = x + '%';
-    button.style.top = y + '%';
+    
+    
+    for (let i = 0; i<buttons.length; i++){
+        let randomIndex = Math.floor(Math.random() * positions.length);
+        let randomElement = positions.splice(randomIndex, 1)[0];
+        // Remove the item at the random index
+        positions = positions.filter(item => item !== randomElement);
+        buttons[i].style.left = "" + randomElement[0] +'%';
+        buttons[i].style.top = "" + randomElement[1] +'%';
+    }
 }
+  
+
 
 /**
  * Creates the container with the buttons
@@ -76,31 +66,32 @@ function createContainer(controller,container){
     container.style.height = "100%";
     container.style.border = "1px solid black";
     container.style.float = "bottom";
-
-        for (let i = 0; i < array.length; i++) {
-            console.log(array[i]);
-            let name = "button" + String(i);
-            let button = document.createElement("button");
-            button.style.minWidth = "100px";
-            button.style.minHeight = "100px";
-            button.style.borderRadius = '50%';
-            button.style.display = 'block';
-            button.style.boxSizing = 'border-box';
-            button.setAttribute('id', name);
-            button.textContent = array[i];
-            button.className = 'equationButton';
-            button.onclick = function() {
-                console.log(button.textContent);
-                controller.addClickedElement(button.textContent)
-                button.disabled = true;
-                button.style.backgroundColor= "grey";
-                textarea = document.getElementById("textarea");
-                textarea.textContent += button.textContent;
+    
+    for (let i = 0; i < array.length; i++) {
+        console.log(array[i]);
+        let name = "button" + String(i);
+        let button = document.createElement("button");
+        button.style.minWidth = "100px";
+        button.style.minHeight = "100px";
+        button.style.borderRadius = '50%';
+        button.style.display = 'block';
+        button.style.boxSizing = 'border-box';
+        button.style.fontSize = "200%";
+        button.setAttribute('id', name);
+        button.textContent = array[i];
+        button.className = 'equationButton';
+        button.onclick = function() {
+            console.log(button.textContent);
+            controller.addClickedElement(button.textContent)
+            button.disabled = true;
+            button.style.backgroundColor= "grey";
+            textarea = document.getElementById("textarea");
+            textarea.textContent += button.textContent;
             }
-            //TODO implement onclick()
-            positionButton(container, button)
             container.appendChild(button);
         }
+    console.log(container);
+    positionButtons(container);
         
     return container
     }
@@ -114,6 +105,7 @@ function createContainer(controller,container){
         textarea.style.border = "1px solid black";
         textarea.style.minHeight = "60px";
         textarea.setAttribute('id','textarea');
+        textarea.style.fontSize = "200%";
         textarea.textContent = "";
         return textarea
     }
@@ -127,6 +119,7 @@ function createContainer(controller,container){
         redoButton.className = 'redo-button';
         redoButton.style.border = "1px solid black";
         redoButton.textContent = 'Redo';
+        redoButton.style.fontSize = "100%";
         redoButton.onclick = function(){ 
             createContainer(controller,container);
             redoButton.textContent = "Reload";
@@ -145,6 +138,8 @@ function createContainer(controller,container){
         gameParent.className = "wholeGame";
         gameParent.style.width = "90vw";
         gameParent.style.height = "90vh";
+        gameParent.style.minWidth = "400px";
+        gameParent.style.minHeight = "800px";
         return gameParent
     }
 
