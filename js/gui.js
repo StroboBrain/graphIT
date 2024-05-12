@@ -72,18 +72,20 @@ function createContainer(controller,container){
     // let container = document.createElement("div");
     container.className = "container";
     container.setAttribute('id', "buttonContainer");
-    container.style.width = "90vw";
-    container.style.height = "80vh";
+    container.style.width = "100%";
+    container.style.height = "100%";
     container.style.border = "1px solid black";
-    container.style.marginTop = "20%"
+    container.style.float = "bottom";
 
         for (let i = 0; i < array.length; i++) {
             console.log(array[i]);
             let name = "button" + String(i);
             let button = document.createElement("button");
-            button.style.width = "15vw";
-            button.style.height = "15vw";
+            button.style.minWidth = "100px";
+            button.style.minHeight = "100px";
             button.style.borderRadius = '50%';
+            button.style.display = 'block';
+            button.style.boxSizing = 'border-box';
             button.setAttribute('id', name);
             button.textContent = array[i];
             button.className = 'equationButton';
@@ -99,6 +101,7 @@ function createContainer(controller,container){
             positionButton(container, button)
             container.appendChild(button);
         }
+        
     return container
     }
 
@@ -109,6 +112,7 @@ function createContainer(controller,container){
         textarea.style.height = "5%";
         textarea.style.float = "left";
         textarea.style.border = "1px solid black";
+        textarea.style.minHeight = "60px";
         textarea.setAttribute('id','textarea');
         textarea.textContent = "";
         return textarea
@@ -116,10 +120,12 @@ function createContainer(controller,container){
 
     function createRedoButton(controller,container){
         var redoButton = document.createElement('button');
+        redoButton.style.minHeight = "60px";
         redoButton.style.width = "30%";
         redoButton.style.height = "5%";
         redoButton.style.float = "right";
         redoButton.className = 'redo-button';
+        redoButton.style.border = "1px solid black";
         redoButton.textContent = 'Redo';
         redoButton.onclick = function(){ 
             createContainer(controller,container);
@@ -137,9 +143,8 @@ function createContainer(controller,container){
     function createGameParent(){
         let gameParent = document.createElement("div");
         gameParent.className = "wholeGame";
-        gameParent.style.width = "100vw";
-        gameParent.style.height = "100vh";
-        gameParent.style.padding = "2vw";
+        gameParent.style.width = "90vw";
+        gameParent.style.height = "90vh";
         return gameParent
     }
 
